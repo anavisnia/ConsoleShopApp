@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleShopApp.Models.Base
 {
-    public abstract class Item
+    public abstract class Item : Shop
     {
         public string Name { get; set; }
 

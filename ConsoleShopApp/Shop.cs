@@ -1,8 +1,10 @@
 ﻿using System;
+using ConsoleShopApp.Models;
+using ConsoleShopApp.Models.Base;
 
 namespace ConsoleShopApp
 {
-    internal class Shop
+    public class Shop
     {
         private readonly string _name;
         public Shop(string name)
@@ -23,10 +25,12 @@ namespace ConsoleShopApp
 
         public void ListItems()
         {
+           
         }
 
         public void Buy(string v1, int v2)
         {
+
         }
 
         public void LoadItems(string itemName, int quantity)
