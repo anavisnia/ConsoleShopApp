@@ -43,6 +43,12 @@ namespace ConsoleShopApp
 
             shop.ListItems();
 
+            shop.Buy("Cup", 1);
+            shop.Buy("Book", 1);
+            shop.Buy("cup", 1);
+
+            shop.ListItems();
+
         }
     }
 }

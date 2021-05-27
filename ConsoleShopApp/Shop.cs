@@ -15,8 +15,7 @@ namespace ConsoleShopApp
 
         public Shop(string name)
         {
-            //this.name = name;
-            _name = name;
+            _name = name; //this.name = name;
             Items = new List<Item>();
         }
 
@@ -61,7 +60,33 @@ namespace ConsoleShopApp
 
         public void Buy(string name, int quantity)
         {
+            bool isUpperCase = HelperStrings.UpperOrLower(name);
+            if (!isUpperCase)
+            {
+                name = HelperStrings.ToUpperCase(name);
+            }
 
+            bool doExist = Items.Any(p => p.Name == name && p.Quantity != 0);
+            if (doExist)
+            {
+                foreach (var item in Items)
+                {
+                    if(item.Name == name)
+                    {
+                        if(quantity > item.Quantity)
+                        {
+                            Console.WriteLine($"You can't buy more than {item.Quantity}");
+                            return;
+                        }
+                        item.Quantity -= quantity;
+                        Console.WriteLine($"You succsessfully bought {quantity} {name}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Such product do not exist...");
+            }
         }
 
     }
