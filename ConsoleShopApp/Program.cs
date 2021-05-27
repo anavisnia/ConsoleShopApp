@@ -2,6 +2,7 @@
 using ConsoleShopApp.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleShopApp
 {
@@ -29,21 +30,23 @@ namespace ConsoleShopApp
                 Console.WriteLine("Write 'Exit' and press enter to stop the program");
                 string userInput = Console.ReadLine().Trim();
 
-                string[] userInputArray = userInput.Split(' ');
-                int itemQuantity;
+                List<string> userInputList = userInput.Trim().Split(' ').ToList();
+                userInputList = userInputList.Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
 
-                switch (userInputArray[0])
+
+                int itemQuantity;
+                switch (userInputList[0])
                 {
                     case "List":
                         shop.ListItems();
                         break;
                     case "Add":
-                        Int32.TryParse(userInputArray[2], out itemQuantity);
-                        shop.AddItem(userInputArray[1], itemQuantity);
+                        Int32.TryParse(userInputList[2], out itemQuantity);
+                        shop.AddItem(userInputList[1], itemQuantity);
                         break;
                     case "Buy":
-                        Int32.TryParse(userInputArray[2], out itemQuantity);
-                        shop.Buy(userInputArray[1], itemQuantity);
+                        Int32.TryParse(userInputList[2], out itemQuantity);
+                        shop.Buy(userInputList[1], itemQuantity);
                         break;
                     case "Exit":
                         exit = true;
@@ -53,7 +56,9 @@ namespace ConsoleShopApp
                         break;
                 }
 
+
             } while (!exit);
+
 
         }
     }

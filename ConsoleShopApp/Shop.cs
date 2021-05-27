@@ -72,22 +72,34 @@ namespace ConsoleShopApp
             bool doExist = Items.Any(p => p.Name == name);
             if (doExist)
             {
-                foreach (var item in Items)
+                try
                 {
-                    if(item.Name == name && item.Quantity != 0)
+                    foreach (var item in Items)
                     {
-                        if(quantity > item.Quantity)
+                        if (item.Name == name && item.Quantity != 0)
                         {
-                            Console.WriteLine($"You can't buy more than {item.Quantity}");
-                            return;
+                            if (quantity > item.Quantity)
+                            {
+                                Console.WriteLine($"You can't buy more than {item.Quantity}");
+                                return;
+                            }
+                            item.Quantity -= quantity;
+                            Console.WriteLine($"You succsessfully bought {quantity} {name}");
+
                         }
-                        item.Quantity -= quantity;
-                        Console.WriteLine($"You succsessfully bought {quantity} {name}");
+                        else if (item.Name == name && item.Quantity == 0)
+                        {
+                            Console.WriteLine("There are no products left");
+                        };
+                        if (item.Quantity == 0)
+                        {
+                            Items.Remove(item);
+                        }
                     }
-                    else if(item.Name == name && item.Quantity == 0)
-                    {
-                        Console.WriteLine("There are no products left");
-                    };
+                }
+                catch (Exception)
+                {
+                    //Console.WriteLine("catched");
                 }
             }
             else
