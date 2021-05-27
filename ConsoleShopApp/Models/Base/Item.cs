@@ -18,7 +18,7 @@ namespace ConsoleShopApp.Models.Base
 
         public virtual string ToDescriptionString()
         {
-            return $"Name: {Name} Price: {Price} Quantity: { Quantity }";
+            return $"Name: {Name} Quantity: { Quantity }";
         }
     }
 }

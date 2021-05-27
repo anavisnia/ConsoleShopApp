@@ -29,7 +29,7 @@ namespace ConsoleShopApp
             return $"Shop: {_name}";
         }
 
-        public void AddItem(string name, decimal price, int quantity)
+        public void AddItem(string name, int quantity)
         {
             bool isUpperCase = HelperStrings.UpperOrLower(name);
             if (!isUpperCase)
@@ -44,7 +44,7 @@ namespace ConsoleShopApp
                 return;
             }
 
-            Item toAddItem = new Item() { Name = name, Price = price, Quantity = quantity };
+            Item toAddItem = new Item() { Name = name, Quantity = quantity };
             this.Items.Add(toAddItem);
             Console.WriteLine($"Item added: {name}");
         }
@@ -54,7 +54,10 @@ namespace ConsoleShopApp
             Console.WriteLine("List of items:");
             foreach (var item in Items)
             {
-                Console.WriteLine(item.ToDescriptionString());
+                if(item.Quantity != 0)
+                {
+                    Console.WriteLine(item.ToDescriptionString());
+                }
             }
         }
 
@@ -66,12 +69,12 @@ namespace ConsoleShopApp
                 name = HelperStrings.ToUpperCase(name);
             }
 
-            bool doExist = Items.Any(p => p.Name == name && p.Quantity != 0);
+            bool doExist = Items.Any(p => p.Name == name);
             if (doExist)
             {
                 foreach (var item in Items)
                 {
-                    if(item.Name == name)
+                    if(item.Name == name && item.Quantity != 0)
                     {
                         if(quantity > item.Quantity)
                         {
@@ -81,6 +84,10 @@ namespace ConsoleShopApp
                         item.Quantity -= quantity;
                         Console.WriteLine($"You succsessfully bought {quantity} {name}");
                     }
+                    else if(item.Name == name && item.Quantity == 0)
+                    {
+                        Console.WriteLine("There are no products left");
+                    };
                 }
             }
             else
