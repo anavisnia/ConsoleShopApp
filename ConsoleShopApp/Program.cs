@@ -31,77 +31,17 @@ namespace ConsoleShopApp
 
             var shop = new Shop();
 
-            List<Book> books = new List<Book>();
+            shop.AddItem("Cup", 2, 20);
+            shop.AddItem("Cup", 2, 20); // exists
+            shop.AddItem("candy", 1, 40); // will be uppercased and added
+            shop.AddItem("Candy", 3, 20); // exists
 
-            books.Add(new Book()
-            {
-                Name = "To Kill a Mockingbird",
-                Price = 15M,
-                Author = "Harper Lee",
-                Quantity = 23,
-                Publisher = "J. B. Lippincott & Co."
-            });
+            //shop.AddItem("Book", 7, 70);
+            //shop.AddItem("Candy", 1, 40);
+            //shop.AddItem("Candy", 5, 20);
 
-            books.Add(new Book()
-            {
-                Name = "1984",
-                Price = 5M,
-                Author = "George Orwell",
-                Quantity = 30,
-                Publisher = "Harvill Secker"
-            });
 
-            books.Add(new Book()
-            {
-                Name = "The Great Gatsby",
-                Price = 25M,
-                Author = "F. Scott Fitzgerald",
-                Quantity = 5,
-                Publisher = "Charles Scribner's Sons"
-            });
-
-            List<Candy> candies = new List<Candy>();
-            candies.Add(new Candy()
-            {
-                Name = "Sour",
-                Price = 2M,
-                Quantity = 40
-            });
-
-            candies.Add(new Candy()
-            {
-                Name = "Sweet",
-                Price = 1.5M,
-                Quantity = 10
-            });
-
-            candies.Add(new Candy()
-            {
-                Name = "Jelly",
-                Price = 3.2M,
-                Quantity = 34
-            });
-
-            List<Cup> cups = new List<Cup>();
-
-            cups.Add(new Cup()
-            {
-                Name = "GlassWall",
-                Price = 4M,
-                Quantity = 12,
-                Color = "transparent",
-                Logo = "go go go"
-            });
-
-            cups.Add(new Cup()
-            {
-                Name = "Sen",
-                Price = 2M,
-                Quantity = 2,
-                Color = "blue",
-                Logo = "With coffe I can rule the world!"
-            });
-
+            shop.ListItems();
 
         }
     }

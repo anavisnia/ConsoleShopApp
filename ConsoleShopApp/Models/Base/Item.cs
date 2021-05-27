@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleShopApp.Models.Base
 {
-    public abstract class Item : Shop
+    public class Item : Shop
     {
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
         public int Quantity { get; set; }
+
 
 
         public virtual string ToDescriptionString()
